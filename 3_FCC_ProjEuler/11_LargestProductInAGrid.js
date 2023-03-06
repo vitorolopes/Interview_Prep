@@ -1,10 +1,74 @@
-https://www.freecodecamp.org/learn/coding-interview-prep/project-euler/problem-11-largest-product-in-a-grid
+// https://www.freecodecamp.org/learn/coding-interview-prep/project-euler/problem-11-largest-product-in-a-grid
 
 function largestGridProduct(arr) {
-  
+
+  let maxProduct = 1
+  let currProduct = 1
+
+  function maxProductChecker(currProduct) {
+    if (currProduct > maxProduct) maxProduct = currProduct
+  }
+
+  // loop rows
+  for (let r=0; r<arr.length; r++){
+    console.log("row: ", r);
+    // loop columns
+    for (let c=0; c<arr[r].length; c++){
+      console.log("column: ", c);
+      
+      //! const limit = arr[r].length-4  
+      const limit = arr[r].length-3 //! I am checking the product of 3 adjacents elements not 4 as stated in the problem
+
+      // check horizontal
+      if(c <= limit){
+        //! currProduct = arr[r][c] * arr[r][c+1] * arr[r][c+2] * arr[r][c+3]
+        currProduct = arr[r][c] * arr[r][c+1] * arr[r][c+2]
+        console.log(currProduct);
+        maxProductChecker(currProduct)
+      } else { console.log("c > limit");}
+     
+      // check vertical
+      if(r <= limit){
+        currProduct = arr[r][c] * arr[r+1][c] * arr[r+2][c] 
+         console.log(currProduct);
+        maxProductChecker(currProduct)
+      } else {console.log("r > limit");}
+
+      // check diagonal [\]
+      if (c <= limit && r <= limit) {
+        currProduct = arr[r][c] * arr[r + 1][c + 1] * arr[r + 2][c + 2] ;
+        maxProductChecker(currProduct);
+      }
+
+      // check diagonal [/]
+      if (c >= 3 && r <= limit) {
+        currProduct = arr[r][c] * arr[r + 1][c - 1] * arr[r + 2][c - 2] ;
+        maxProductChecker(currProduct);
+      }
+     
+    }
+
+  }
+ return maxProduct
 }
 
+const testGrid = [
+  [4, 2, 3, 1],
+  [4, 100, 3, 1],
+  [4, 2, 100, 1],
+  [4, 2, 3, 1],
+
+];
+
 console.log(largestGridProduct(testGrid));
+
+// const testGrid = [
+//   [40, 17, 81, 18, 57],
+//   [74, 4, 36, 16, 29],
+//   [36, 42, 69, 73, 45],
+//   [51, 54, 69, 16, 92],
+//   [7, 97, 57, 32, 16]
+// ];
 
 
 const grid = [
@@ -30,10 +94,3 @@ const grid = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-const testGrid = [
-  [40, 17, 81, 18, 57],
-  [74, 4, 36, 16, 29],
-  [36, 42, 69, 73, 45],
-  [51, 54, 69, 16, 92],
-  [7, 97, 57, 32, 16]
-];
