@@ -17,6 +17,7 @@ const DrawingBook = (n,p) => {
   
   let countB2F = 0
   let b2fArr = n%2 === 0 ? [n] : [n, n-1]
+  let pagesB2F = b2fArr[b2fArr.length-1]
 
   while(!b2fArr.includes(p)){
     b2fArr.push(pagesB2F-1, pagesB2F-2)
@@ -27,4 +28,4 @@ const DrawingBook = (n,p) => {
   return Math.min(countF2B, countB2F)
 }
 
- console.log(DrawingBook(5,3));
+ console.log(DrawingBook(5,4));
