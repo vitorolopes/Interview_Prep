@@ -8,6 +8,7 @@ const DrawingBook = (n,p) => {
   if(p===f2b) return 0
   let pagesF2B = 1
   let countF2B = 0
+  
   while(!f2bArr.includes(p)){
     f2bArr.push(pagesF2B+1, pagesF2B+2)
     pagesF2B = pagesF2B + 2
