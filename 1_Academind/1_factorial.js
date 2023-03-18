@@ -36,3 +36,4 @@ function factorial_recursive_b(n) {
 }
 
 console.log(factorial_recursive_b(5))
+
