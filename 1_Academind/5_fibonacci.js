@@ -8,7 +8,7 @@ const fibo = (n) => {
   return fiboSeq[n-1]
 }
 
-console.log(fibo(11));
+console.log(fibo(12));
 
 
 // Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1
